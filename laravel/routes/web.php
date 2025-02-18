@@ -3,11 +3,15 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookController;
-
+use App\Http\Controllers\BorrowController;
 
 Route::get('/', function () {
     return view('home');
 });
+// routes/web.php
+
+Route::post('borrow/{book}', [BorrowController::class, 'borrow'])->name('borrow');
+Route::post('return/{borrow}', [BorrowController::class, 'return'])->name('return');
 
 
 // Authentification
