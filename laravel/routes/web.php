@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BookController;
+
 
 Route::get('/', function () {
     return view('home');
@@ -23,3 +25,7 @@ Route::get('/profile', [AuthController::class, 'profile'])->name('profile')->mid
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard')->middleware('auth');
+
+
+
+Route::resource('books', BookController::class);
