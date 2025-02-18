@@ -10,7 +10,7 @@ class BookController extends Controller
     public function index()
     {
         $books = Book::all();
-        return view('books.index', compact('books'));
+        return view('index', compact('books'));
     }
 
     public function create()
@@ -27,7 +27,7 @@ class BookController extends Controller
         ]);
 
         Book::create($request->all());
-        return redirect()->route('books.index');
+        return redirect()->route('index');
     }
 
     public function edit($id)
@@ -46,13 +46,13 @@ class BookController extends Controller
 
         $book = Book::findOrFail($id);
         $book->update($request->all());
-        return redirect()->route('books.index');
+        return redirect()->route('index');
     }
 
     public function destroy($id)
     {
         $book = Book::findOrFail($id);
         $book->delete();
-        return redirect()->route('books.index');
+        return redirect()->route('index');
     }
 }
