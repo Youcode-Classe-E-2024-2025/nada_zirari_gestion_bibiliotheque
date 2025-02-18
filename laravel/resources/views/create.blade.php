@@ -30,7 +30,7 @@
         </div>
 
         <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">Ajouter</button>
-        <a href="{{ route('books.index') }}" class="ml-2 text-gray-600 hover:underline">Annuler</a>
+        <a href="{{ route('index') }}" class="ml-2 text-gray-600 hover:underline">Annuler</a>
     </form>
 </div>
 @endsection

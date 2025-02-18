@@ -15,7 +15,7 @@ class BookController extends Controller
 
     public function create()
     {
-        return view('books.create');
+        return view('create');
     }
 
     public function store(Request $request)
@@ -33,7 +33,7 @@ class BookController extends Controller
     public function edit($id)
     {
         $book = Book::findOrFail($id);
-        return view('books.edit', compact('book'));
+        return view('edit', compact('book'));
     }
 
     public function update(Request $request, $id)
