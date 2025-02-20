@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Book;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -48,7 +49,7 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            return redirect()->route('dashboard')->with('success', 'Connexion réussie !');
+            return redirect()->route('profile')->with('success', 'Connexion réussie !');
         }
 
         return back()->withErrors(['email' => 'Email ou mot de passe incorrect']);
@@ -58,12 +59,12 @@ class AuthController extends Controller
     public function logout()
     {
         Auth::logout();
-        return redirect()->route('login')->with('success', 'Déconnexion réussie !');
+        return redirect()->route('home')->with('success', 'Déconnexion réussie !');
     }
 
     // Afficher le profil de l'utilisateur
     public function profile()
     {
-        return view('auth.profile', ['user' => Auth::user()]);
+        return view('profile', ['user' => Auth::user(), "books" => Book::all()]);
     }
 }

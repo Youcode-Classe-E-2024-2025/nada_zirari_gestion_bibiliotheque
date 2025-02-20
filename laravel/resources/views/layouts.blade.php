@@ -13,15 +13,15 @@
             <a href="{{ route('home') }}" class="text-white text-xl font-bold">Bibliothèque</a>
             <div>
                 @auth
-                    <a href="{{ route('books.index') }}" class="text-white mx-2">Livres</a>
-                    <a href="{{ route('profile') }}" class="text-white mx-2">Profil</a>
-                    <form action="{{ route('logout') }}" method="POST" class="inline">
+                    <a href="/" class="text-white mx-2">Livres</a>
+                    <a href="/profile" class="text-white mx-2">Profil</a>
+                    <form action="/logout" method="POST" class="inline">
                         @csrf
                         <button type="submit" class="text-white mx-2">Déconnexion</button>
                     </form>
                 @else
-                    <a href="{{ route('login') }}" class="text-white mx-2">Connexion</a>
-                    <a href="{{ route('register') }}" class="text-white mx-2">Inscription</a>
+                    <a href="/login" class="text-white mx-2">Connexion</a>
+                    <a href="/register" class="text-white mx-2">Inscription</a>
                 @endauth
             </div>
         </div>

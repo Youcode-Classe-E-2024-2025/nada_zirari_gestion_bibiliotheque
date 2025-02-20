@@ -35,3 +35,4 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 
 Route::resource('books', BookController::class);
+Route::get('/books/create', [BookController::class, 'create'])->name('create');

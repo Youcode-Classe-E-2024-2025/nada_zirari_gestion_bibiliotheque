@@ -27,7 +27,7 @@ class BookController extends Controller
         ]);
 
         Book::create($request->all());
-        return redirect()->route('index');
+        return redirect()->route('/profile');
     }
 
     public function edit($id)
