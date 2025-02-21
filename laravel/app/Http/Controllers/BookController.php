@@ -27,7 +27,7 @@ class BookController extends Controller
         ]);
 
         Book::create($request->all());
-        return redirect()->route('/profile');
+        return redirect()->route('books.index');
     }
 
     public function edit($id)
@@ -46,13 +46,13 @@ class BookController extends Controller
 
         $book = Book::findOrFail($id);
         $book->update($request->all());
-        return redirect()->route('index');
+        return redirect()->route('create');
     }
 
     public function destroy($id)
     {
         $book = Book::findOrFail($id);
         $book->delete();
-        return redirect()->route('index');
+        return redirect()->route('books.index');
     }
 }

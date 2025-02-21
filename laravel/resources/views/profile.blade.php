@@ -49,7 +49,7 @@
                         <td class="border p-3">{{ $book->title }}</td>
                         <td class="border p-3">{{ $book->author }}</td>
                         <td class="border p-3 space-x-2">
-                            <a href="/books.id/edit" class="bg-yellow-500 text-white px-3 py-1 rounded-lg hover:bg-yellow-600">Modifier</a>
+                            <a href="/books/edit" class="bg-yellow-500 text-white px-3 py-1 rounded-lg hover:bg-yellow-600">Modifier</a>
                             <form action="{{ route('books.destroy', $book->id) }}" method="POST" class="inline-block">
                                 @csrf
                                 @method('DELETE')

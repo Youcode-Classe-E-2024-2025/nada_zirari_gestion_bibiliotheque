@@ -32,7 +32,7 @@
         </div>
 
         <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Enregistrer</button>
-        <a href="{{ route('index') }}" class="ml-2 text-gray-600 hover:underline">Annuler</a>
+        <a href="/books/edit" class="ml-2 text-gray-600 hover:underline">Annuler</a>
     </form>
 </div>
 @endsection
