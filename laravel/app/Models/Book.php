@@ -11,5 +11,6 @@ class Book extends Model
         'title',
         'author',
         'description',
+        'image',
     ];
 }

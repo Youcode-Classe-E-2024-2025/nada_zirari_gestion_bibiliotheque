@@ -6,63 +6,62 @@
     <title>Profil</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen">
-    <div class="bg-white shadow-lg rounded-lg p-8 max-w-sm w-full">
-        <h2 class="text-2xl font-bold text-center text-gray-700 mb-6">Profil de {{ $user->name }}</h2>
 
-        <div class="space-y-4">
-            <p class="text-gray-600 text-sm">Email : <span class="font-semibold">{{ $user->email }}</span></p>
+<!-- Navbar -->
+<nav class="bg-blue-600 p-4 shadow-md fixed top-0 left-0 w-full z-10">
+    <div class="container mx-auto flex justify-between items-center">
+        <a href="{{ route('home') }}" class="text-white text-xl font-bold">Bibliothèque</a>
+        <div>
+            @auth
+                <a href="/" class="text-white mx-2">Livres</a>
+                <a href="/profile" class="text-white mx-2">Profil</a>
+                <form action="/logout" method="POST" class="inline">
+                    @csrf
+                    <button type="submit" class="text-white mx-2">Déconnexion</button>
+                </form>
+            @else
+                <a href="/login" class="text-white mx-2">Connexion</a>
+                <a href="/register" class="text-white mx-2">Inscription</a>
+            @endauth
+        </div>
+    </div>
+</nav>
+
+<!-- Corps de la page -->
+<body class="bg-gray-100 min-h-screen pt-16 flex flex-col items-center justify-center">
+
+    <!-- Conteneur principal -->
+    <div class="bg-white shadow-lg rounded-lg p-8 max-w-4xl w-full flex flex-col md:flex-row">
+
+        <!-- Partie gauche : Photo et nom de l'utilisateur -->
+        <div class="w-full md:w-1/3 flex flex-col items-center mb-8 md:mb-0 md:border-r pr-8">
+            <img src="photo.webp" alt="Photo de profil" class="w-32 h-32 rounded-full mb-4 object-cover">
+            <h2 class="text-2xl font-bold text-gray-700">{{ $user->name }}</h2>
+            <p class="text-gray-600 mt-2">{{ $user->email }}</p>
         </div>
 
-        <form action="{{ route('logout') }}" method="POST" class="mt-6">
-            @csrf
-            <button type="submit" class="w-full bg-red-600 text-white py-2 rounded-lg hover:bg-red-700 transition">
-                Se déconnecter
-            </button>
-        </form>
-    </div>
-    @section('content')
-<div class="max-w-4xl mx-auto mt-10">
-    <div class="flex justify-between items-center mb-4">
-        <h2 class="text-2xl font-bold">Liste des livres</h2>
-        <a href="/books/create" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Ajouter un livre</a>
-    </div>
+        <!-- Partie droite : Détails du profil -->
+        <div class="w-full md:w-2/3 pl-0 md:pl-8">
+            <h3 class="text-xl font-semibold text-gray-700 mb-6">Détails du Profil</h3>
 
-    @if(session('success'))
-        <div class="bg-green-100 text-green-700 p-3 rounded-lg mb-4">
-            {{ session('success') }}
+            <!-- Info utilisateur -->
+            <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+                <h4 class="text-lg font-semibold text-gray-800">Informations</h4>
+                <ul class="space-y-2 mt-4 text-gray-700">
+                    <li>Email : <span class="font-medium">{{ $user->email }}</span></li>
+                    <!-- Ajouter d'autres informations ici -->
+                    <!-- Par exemple, afficher la date d'inscription, etc. -->
+                </ul>
+            </div>
+
+            <!-- Bouton de déconnexion -->
+            <form action="{{ route('logout') }}" method="POST" class="mt-6">
+                @csrf
+                <button type="submit" class="w-full bg-red-600 text-white py-2 rounded-lg hover:bg-red-700 transition">
+                    Se déconnecter
+                </button>
+            </form>
         </div>
-    @endif
-
-    <div class="bg-white shadow-md rounded-lg p-6">
-        <table class="w-full border-collapse border border-gray-300">
-            <thead>
-                <tr class="bg-gray-100">
-                    <th class="border p-3">Titre</th>
-                    <th class="border p-3">Auteur</th>
-                    <th class="border p-3">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($books as $book)
-                    <tr class="text-center">
-                        <td class="border p-3">{{ $book->title }}</td>
-                        <td class="border p-3">{{ $book->author }}</td>
-                        <td class="border p-3 space-x-2">
-                            <a href="/books/edit" class="bg-yellow-500 text-white px-3 py-1 rounded-lg hover:bg-yellow-600">Modifier</a>
-                            <form action="{{ route('books.destroy', $book->id) }}" method="POST" class="inline-block">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-red-600" onclick="return confirm('Voulez-vous vraiment supprimer ce livre ?')">Supprimer</button>
-                            </form>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
     </div>
-</div>
-@endsection
-
 </body>
 </html>

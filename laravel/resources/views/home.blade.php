@@ -16,7 +16,9 @@
                 <div class="text-2xl font-bold text-gray-100">
                     Bibliothèque
                 </div>
-                <a href="/bookdetails">details</a>
+                <a href="/bookdetails" class="bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition">
+                           Details des livres
+                        </a>
                 <!-- Liens de navigation -->
                 <div class="flex items-center space-x-4">
                     @auth
