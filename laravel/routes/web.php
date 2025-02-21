@@ -8,7 +8,9 @@ use App\Http\Controllers\HomeController;
 Route::get('/', function () {
     return view('home');
 });
+Route::get('/bookdetails', [BookController::class, 'bookdetails'])->name('bookdetails');
 // routes/web.php
+Route::get('/books/borrow/{id}', [BookController::class, 'borrow'])->name('borrow.book');
 
 Route::post('borrow/{book}', [BorrowController::class, 'borrow'])->name('borrow');
 Route::post('return/{borrow}', [BorrowController::class, 'return'])->name('return');
@@ -24,6 +26,10 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
 Route::get('/profile', [AuthController::class, 'profile'])->name('profile')->middleware('auth');
+
+Route::get('/books', function () {
+    return view('create');
+})->name('books');
 
 // Dashboard après connexion (page d'accueil des utilisateurs)
 Route::get('/dashboard', function () {

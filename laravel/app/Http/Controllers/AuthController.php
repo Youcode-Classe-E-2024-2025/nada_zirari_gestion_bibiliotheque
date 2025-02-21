@@ -49,7 +49,11 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            return redirect()->route('profile')->with('success', 'Connexion réussie !');
+            if (Auth::user()->role === 'admin') {
+                return redirect('/books');
+            } else {
+                return redirect('bookdetails');
+            }
         }
 
         return back()->withErrors(['email' => 'Email ou mot de passe incorrect']);

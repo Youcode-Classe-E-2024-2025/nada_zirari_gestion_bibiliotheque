@@ -15,7 +15,10 @@ class BookController extends Controller
 
     public function create()
     {
-        return view('create');
+        if (Auth::user()->role === 'admin') {
+            return view('create');
+        }
+        
     }
 
     public function store(Request $request)
@@ -46,7 +49,7 @@ class BookController extends Controller
 
         $book = Book::findOrFail($id);
         $book->update($request->all());
-        return redirect()->route('create');
+        return redirect('books');
     }
 
     public function destroy($id)
@@ -54,5 +57,10 @@ class BookController extends Controller
         $book = Book::findOrFail($id);
         $book->delete();
         return redirect()->route('books.index');
+    }
+
+    public function bookdetails() {
+        $books = Book::all();
+        return view('bookdetails', compact('books'));
     }
 }

@@ -16,6 +16,7 @@
                 <div class="text-2xl font-bold text-gray-100">
                     Bibliothèque
                 </div>
+                <a href="/bookdetails">details</a>
                 <!-- Liens de navigation -->
                 <div class="flex items-center space-x-4">
                     @auth
@@ -53,6 +54,7 @@
                 Découvrez un vaste choix de livres, <br>magazines et ressources numériques pour tous les âges et centres d’intérêt.<br> Profitez d’un espace convivial pour lire, étudier<br> ou participer à nos activités culturelles.
                 </p>
             </div>
+<!-- Section des livres empruntables -->
 
             <!-- Boutons sous le contenu -->
             <!-- <div class="flex justify-center space-x-4 mt-6">
