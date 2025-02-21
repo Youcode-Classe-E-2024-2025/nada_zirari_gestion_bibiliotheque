@@ -46,6 +46,7 @@
                         </svg>
                     </div>
                 </div>
+
                 <form method="POST" action="{{ route('borrow') }}" class="mt-4">
                     @csrf
                     <input type="hidden" name="book_id" value="{{ $book->id }}">
@@ -54,6 +55,7 @@
                         Emprunter
                     </button>
                 </form>
+
             </div>
         </div>
         @endforeach

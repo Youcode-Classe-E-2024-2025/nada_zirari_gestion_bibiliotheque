@@ -12,7 +12,19 @@ use Illuminate\Http\Request;
 
 class EmpruntController extends Controller
 {
-
+    public function index()
+    {
+        $user = auth()->user();
+    $borrowings = Emprunt::with('user', 'book')
+        ->where('user_id', $user->id)
+        ->whereNull('returned_at')
+        ->get();
+        
+    return view('profile', [
+        'borrowings' => $borrowings,
+        'user' => $user
+    ]);
+    }
     
 
     public function borrow(Request $request)
@@ -29,25 +41,21 @@ class EmpruntController extends Controller
         return redirect()->route('profile');
     }
 
-    public function return(Emprunt $borrow)
+    // public function return(Emprunt $borrow)
+    // {
+    //     $borrow->update(['returned_at' => now()]);
+    //     return redirect()->route('bookdetails',);
+    // }
+
+
+    public function return(Emprunt $borrowing)
     {
-        $borrow->update(['returned_at' => now()]);
-        return redirect()->route('books.index');
-    }
-
-
-    public function returnBook(Emprunt $borrowing)
-    {
-        if ($borrowing->returned_at) {
-            return back()->withErrors(['returned_at' => 'Already returned']);
-        }
-
-        $borrowing->update(['returned_at' => now()]);
-
-        $book = $borrowing->book;
+        $borrowing = Emprunt::findOrFail($borrowing->id);
         
+        $borrowing->update(['returned_at' => now()]);      
+       
 
-        return redirect()->route('profile.index');
+        return redirect()->route('profile');
     }
     
 }

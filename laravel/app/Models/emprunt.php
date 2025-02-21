@@ -10,6 +10,7 @@ class Emprunt extends Model
         'user_id',
         'book_id',
         'borrowed_at',
+        'returned_at',
     ];
 
     protected $casts = [

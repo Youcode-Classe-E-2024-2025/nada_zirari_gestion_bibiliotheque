@@ -11,10 +11,10 @@ Route::get('/', function () {
 });
 Route::get('/bookdetails', [BookController::class, 'bookdetails'])->name('bookdetails');
 // routes/web.php
-// Route::get('/books/borrow/{id}', [BookController::class, 'borrow'])->name('borrow.book');
+Route::get('/books/borrow/{id}', [BookController::class, 'borrow'])->name('borrow.book');
 // Route::get('/profile', [EmpruntController::class, 'index'])->name('profile');
 Route::post('/borrow', [EmpruntController::class, 'borrow'])->name('borrow');
-// Route::post('return/{borrow}', [EmpruntController::class, 'return'])->name('return');
+Route::put('return/{borrowing}', [EmpruntController::class, 'return'])->name('return');
 
 
 // Authentification

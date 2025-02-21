@@ -71,11 +71,11 @@ class AuthController extends Controller
     public function profile()
     {
     $user = auth()->user();
-    $borrowings = Emprunt::with('user', 'book')->where('user_id', $user->id)->get();
-    // dd([
-    //     'borrowings' => $borrowings,
-    //     'user' => $user
-    // ]);
+    $borrowings = Emprunt::with('user', 'book')
+        ->where('user_id', $user->id)
+        ->whereNull('returned_at')
+        ->get();
+
         return view('profile', ['user' => Auth::user(), "books" => Book::all(), 'borrowings' => $borrowings]);
     }
 }
