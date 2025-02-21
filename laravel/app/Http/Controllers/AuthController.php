@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Book;
+use App\Models\Emprunt;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -69,6 +70,12 @@ class AuthController extends Controller
     // Afficher le profil de l'utilisateur
     public function profile()
     {
-        return view('profile', ['user' => Auth::user(), "books" => Book::all()]);
+    $user = auth()->user();
+    $borrowings = Emprunt::with('user', 'book')->where('user_id', $user->id)->get();
+    // dd([
+    //     'borrowings' => $borrowings,
+    //     'user' => $user
+    // ]);
+        return view('profile', ['user' => Auth::user(), "books" => Book::all(), 'borrowings' => $borrowings]);
     }
 }

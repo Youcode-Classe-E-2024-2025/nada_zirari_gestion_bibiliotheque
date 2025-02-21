@@ -46,8 +46,8 @@
                         </svg>
                     </div>
                 </div>
-                <form method="POST" action="{{ route('home') }}" class="mt-4">
-                    
+                <form method="POST" action="{{ route('borrow') }}" class="mt-4">
+                    @csrf
                     <input type="hidden" name="book_id" value="{{ $book->id }}">
                     <button type="submit"
                         class="w-full bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition-all duration-300 transform hover:scale-105">

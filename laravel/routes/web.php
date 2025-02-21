@@ -3,17 +3,18 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookController;
-use App\Http\Controllers\BorrowController;
+use App\Http\Controllers\EmpruntController;
 use App\Http\Controllers\HomeController;
+
 Route::get('/', function () {
     return view('home');
 });
 Route::get('/bookdetails', [BookController::class, 'bookdetails'])->name('bookdetails');
 // routes/web.php
-Route::get('/books/borrow/{id}', [BookController::class, 'borrow'])->name('borrow.book');
-
-Route::post('borrow/{book}', [BorrowController::class, 'borrow'])->name('borrow');
-Route::post('return/{borrow}', [BorrowController::class, 'return'])->name('return');
+// Route::get('/books/borrow/{id}', [BookController::class, 'borrow'])->name('borrow.book');
+// Route::get('/profile', [EmpruntController::class, 'index'])->name('profile');
+Route::post('/borrow', [EmpruntController::class, 'borrow'])->name('borrow');
+// Route::post('return/{borrow}', [EmpruntController::class, 'return'])->name('return');
 
 
 // Authentification
